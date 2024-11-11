@@ -1,0 +1,19 @@
+service: weather-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  profile: default
+  region: eu-north-1
+
+functions:
+  getWeather:
+    handler: handler.getWeather
+    events:
+      - http:
+          path: city-weather
+          method: get
+          queryStringParameters:
+            city: true
+plugins:
+  - serverless-offline
